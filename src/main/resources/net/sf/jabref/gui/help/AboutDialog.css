@@ -35,6 +35,7 @@
 .logo {
 	-fx-margin-bottom: 10px;
 	-fx-padding: 5px 20px;
+	-fx-image: url("/images/external/JabRef-icon-48.png");
 }
 
 .link, link:selected, .link:visited, .link:focused {

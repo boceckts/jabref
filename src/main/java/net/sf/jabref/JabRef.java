@@ -15,6 +15,7 @@
 */
 package net.sf.jabref;
 
+import com.airhacks.afterburner.injection.Injector;
 import com.jgoodies.looks.plastic.Plastic3DLookAndFeel;
 import com.jgoodies.looks.plastic.theme.SkyBluer;
 import net.sf.jabref.exporter.*;
@@ -37,6 +38,7 @@ import net.sf.jabref.logic.remote.RemotePreferences;
 import net.sf.jabref.logic.remote.client.RemoteListenerClient;
 import net.sf.jabref.logic.search.DatabaseSearcher;
 import net.sf.jabref.logic.search.SearchQuery;
+import net.sf.jabref.logic.util.BuildInfo;
 import net.sf.jabref.logic.util.OS;
 import net.sf.jabref.logic.util.io.FileBasedLock;
 import net.sf.jabref.logic.util.strings.StringUtil;
@@ -132,6 +134,11 @@ public class JabRef {
         }
 
         SwingUtilities.invokeLater(() -> openWindow(loaded.get()));
+
+        // Set-up dependency injection
+        Map<Object, Object> dependencies = new HashMap<>();
+        dependencies.put("buildInfo", new BuildInfo());
+        Injector.setConfigurationSource(dependencies::get);
     }
 
     public Optional<Vector<ParserResult>> processArguments(String[] args, boolean initialStartup) {

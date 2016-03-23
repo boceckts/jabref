@@ -31,7 +31,6 @@ import net.sf.jabref.gui.actions.*;
 import net.sf.jabref.gui.dbproperties.DatabasePropertiesDialog;
 import net.sf.jabref.gui.desktop.JabRefDesktop;
 import net.sf.jabref.gui.help.AboutAction;
-import net.sf.jabref.gui.help.AboutDialog;
 import net.sf.jabref.gui.help.HelpAction;
 import net.sf.jabref.gui.help.HelpFiles;
 import net.sf.jabref.gui.journals.ManageJournalsAction;
@@ -176,9 +175,6 @@ public class JabRefFrame extends JFrame implements OutputPrinter {
     private final JProgressBar progressBar = new JProgressBar();
 
     private final FileHistoryMenu fileHistory = new FileHistoryMenu(prefs, this);
-
-    // The help window.
-    private AboutDialog aboutDialog = null;
 
     // Here we instantiate menu/toolbar actions. Actions regarding
     // the currently open database are defined as a GeneralAction
@@ -564,7 +560,6 @@ public class JabRefFrame extends JFrame implements OutputPrinter {
 
                 if (OS.OS_X) {
                     JabRefFrame.this.setVisible(false);
-                    hideFXWindowsOnMac();
                 } else {
                     new CloseAction().actionPerformed(null);
                 }
@@ -646,15 +641,8 @@ public class JabRefFrame extends JFrame implements OutputPrinter {
     
     private void initComponentsInFXThread() {
         Platform.runLater(() -> {
-            aboutDialog = new AboutDialog();
-            about = new AboutAction(Localization.menuTitle("About JabRef"), this.aboutDialog,
+            about = new AboutAction(Localization.menuTitle("About JabRef"),
                     Localization.lang("About JabRef"), IconTheme.getImage("about"));
-        });
-    }
-    
-    private void hideFXWindowsOnMac() {
-        Platform.runLater(() -> {
-            JabRef.jrf.aboutDialog.hide();
         });
     }
 

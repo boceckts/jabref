@@ -12,6 +12,10 @@ public class Localization {
     public static final String RESOURCE_PREFIX = "l10n/JabRef";
     public static final String MENU_RESOURCE_PREFIX = "l10n/Menu";
 
+    public static ResourceBundle getMessages() {
+        return messages;
+    }
+
     private static ResourceBundle messages;
     private static ResourceBundle menuTitles;
 
