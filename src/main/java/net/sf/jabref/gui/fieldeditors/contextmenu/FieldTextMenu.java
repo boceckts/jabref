@@ -96,8 +96,8 @@ public class FieldTextMenu implements MouseListener {
 
             boolean isDOIField = field.getFieldName().equals(FieldName.DOI);
             doiMenuItem.setVisible(isDOIField);
-            boolean isDoiFieldEmpty = field.getText().isEmpty();
-            doiMenuItem.setEnabled(!isDoiFieldEmpty);
+            boolean isFieldEmpty = field.getText().isEmpty();
+            doiMenuItem.setEnabled(!isFieldEmpty);
 
             inputMenu.show(e.getComponent(), e.getX(), e.getY());
         }

@@ -31,7 +31,9 @@ public class CopyDoiUrlAction extends AbstractAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        identifier = component == null ? identifier : component.getText();
+        if (component != null) {
+            identifier = component.getText();
+        }
 
         Optional<String> urlOptional = DOI.build(identifier).map(DOI::getURIAsASCIIString);
         if (urlOptional.isPresent()) {
