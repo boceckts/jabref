@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.FocusListener;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -199,6 +200,15 @@ class EntryEditorTab {
                 pan.setLayout(new BorderLayout());
 
                 pan.add(extra.get(), BorderLayout.NORTH);
+                // Hidden field extra components should not be enabled as they only work on the visible field
+                if (isHiddenField(field)) {
+                    Arrays.stream(((JPanel) pan.getComponent(0)).getComponents()).forEach(component -> component.setEnabled(false));
+                }
+                if (fieldEditor instanceof TextAreaForVisibleField) {
+                    ((TextAreaForVisibleField) fieldEditor).setExtra(pan);
+                } else if (fieldEditor instanceof TextAreaForHiddenField) {
+                    ((TextAreaForHiddenField) fieldEditor).setExtra(pan);
+                }
                 builder.append(pan);
             } else {
                 builder.append(fieldEditor.getPane(), 3);
