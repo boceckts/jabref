@@ -41,6 +41,8 @@ npm-debug.log
 jabref.xml
 *.sonargraph
 
+# workspace specific eadlsync configuration
+.eadlsync
 
 
 
