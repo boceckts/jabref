@@ -9,17 +9,26 @@ import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 
+import com.google.common.collect.Lists;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jabref.gui.AbstractViewModel;
 import org.jabref.gui.ClipBoardManager;
 import org.jabref.gui.DialogService;
 import org.jabref.gui.desktop.JabRefDesktop;
 import org.jabref.logic.l10n.Localization;
 import org.jabref.logic.util.BuildInfo;
+import radar.ad.annotations.YStatementJustification;
 
-import com.google.common.collect.Lists;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+@YStatementJustification(
+        id = "JabRef-Solutions/gui/GUI",
+        context = "migrating to JavaFX",
+        facing = "not having an expert in JavaFX",
+        chosen = "JabRef-Solutions/gui/MMVM",
+        neglected = "JabRef-Solutions/gui/MVC",
+        achieving = "separation of model and view",
+        accepting = "a lot of time needed to learn new pattern"
+)
 public class AboutDialogViewModel extends AbstractViewModel {
 
     private static final String homepageUrl = "https://www.jabref.org";

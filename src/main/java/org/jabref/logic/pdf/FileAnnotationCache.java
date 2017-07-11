@@ -3,20 +3,27 @@ package org.jabref.logic.pdf;
 import java.util.List;
 import java.util.Map;
 
-import org.jabref.model.database.BibDatabaseContext;
-import org.jabref.model.entry.BibEntry;
-import org.jabref.model.pdf.FileAnnotation;
-
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jabref.model.database.BibDatabaseContext;
+import org.jabref.model.entry.BibEntry;
+import org.jabref.model.pdf.FileAnnotation;
+import radar.ad.annotations.YStatementJustification;
 
+@YStatementJustification(
+        id = "JabRef-Solutions/caching/Cache%20Annotations",
+        context = "Citation styles have been implemented for entries",
+        chosen = "JabRef-Solutions/caching/CAOR",
+        neglected = "JabRef-Solutions/caching/FIFO, JabRef-Solutions/caching/LIFO, JabRef-Solutions/caching/others",
+        accepting = "big chache"
+)
 public class FileAnnotationCache {
 
     private static final Log LOGGER = LogFactory.getLog(FileAnnotation.class);
-    //cache size in entries
+    //cache size in  entries
     private final static int CACHE_SIZE = 10;
 
     //the inner list holds the annotations per file, the outer collection maps this to a BibEntry.
